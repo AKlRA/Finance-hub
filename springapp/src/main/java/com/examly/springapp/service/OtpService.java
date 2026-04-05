@@ -35,7 +35,12 @@ public class OtpService {
             "Regards,\nFinanceHub Team"
         );
 
-        mailSender.send(message);
+        // mailSender.send(message); // Bypass Render's SMTP block
+        System.out.println("\n=======================================================");
+        System.out.println("🚨 MOCK EMAIL OTP (RENDER FAST OPTION) 🚨");
+        System.out.println("Email: " + email);
+        System.out.println("Generated OTP: " + otp);
+        System.out.println("=======================================================\n");
     }
 
     public boolean validateOtp(String email, String otp) {
