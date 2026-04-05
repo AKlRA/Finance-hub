@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://8080-abbdedbacdfcecebfffcbfefde.premiumproject.examly.io/api';
+  private apiUrl = 'https://finance-hub-7c5c.onrender.com/api';
 
   private currentUserSubject = new BehaviorSubject<any>(this.getUserFromStorage());
   public currentUser$ = this.currentUserSubject.asObservable();

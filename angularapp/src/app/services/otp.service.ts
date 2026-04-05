@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class OtpService {
 
-  private apiUrl = 'https://8080-abbdedbacdfcecebfffcbfefde.premiumproject.examly.io/api';
+  private apiUrl = 'https://finance-hub-7c5c.onrender.com/api';
 
   constructor(private http: HttpClient) { }
 

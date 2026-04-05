@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class FeedbackService {
-  private apiUrl = 'https://8080-abbdedbacdfcecebfffcbfefde.premiumproject.examly.io/api/feedback';
+  private apiUrl = 'https://finance-hub-7c5c.onrender.com/api/feedback';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

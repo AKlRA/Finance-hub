@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
   userRole: string = '';
   isManager: boolean = false;
 
-  private apiUrl = 'https://8080-abbdedbacdfcecebfffcbfefde.premiumproject.examly.io/api';
+  private apiUrl = 'https://finance-hub-7c5c.onrender.com/api';
 
   constructor(
     private fb: FormBuilder,

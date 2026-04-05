@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class EnquiryService {
-  private apiUrl = 'https://8080-abbdedbacdfcecebfffcbfefde.premiumproject.examly.io/api/enquiry';
+  private apiUrl = 'https://finance-hub-7c5c.onrender.com/api/enquiry';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

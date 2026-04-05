@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class PlanapplicationService {
-  private apiUrl = 'https://8080-abbdedbacdfcecebfffcbfefde.premiumproject.examly.io/api/planapplications';
+  private apiUrl = 'https://finance-hub-7c5c.onrender.com/api/planapplications';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

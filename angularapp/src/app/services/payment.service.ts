@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 })
 export class PaymentService {
 
-  private apiUrl = 'https://8080-abbdedbacdfcecebfffcbfefde.premiumproject.examly.io/api/payments';
+  private apiUrl = 'https://finance-hub-7c5c.onrender.com/api/payments';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
