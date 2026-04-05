@@ -1,0 +1,29 @@
+
+> angularapp@0.0.0 build C:\Users\Bhuvan\finance hub\angularapp
+> ng build
+
+- Generating browser application bundles...
+✔ Browser application bundle generation complete.
+
+Error: src/app/components/profile/profile.component.html:207:19 - error TS2551: Property 'passwordError' does not exist on type 'ProfileComponent'. Did you mean 'passwordForm'?
+
+207       <div *ngIf="passwordError"
+                      ~~~~~~~~~~~~~
+
+  src/app/components/profile/profile.component.ts:8:16
+    8   templateUrl: './profile.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component ProfileComponent.
+
+
+
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! angularapp@0.0.0 build: `ng build`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the angularapp@0.0.0 build script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\Bhuvan\AppData\Roaming\npm-cache\_logs\2026-04-05T08_55_22_598Z-debug.log

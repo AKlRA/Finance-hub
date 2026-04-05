@@ -1,0 +1,432 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< com.examly:springapp >------------------------
+[INFO] Building springapp 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ springapp ---
+[INFO] Deleting C:\Users\Bhuvan\finance hub\springapp\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ springapp ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ springapp ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 38 source files with javac [debug release 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[4,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[5,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[6,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[13,48] cannot find symbol
+  symbol: class UserDetailsService
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[19,12] cannot find symbol
+  symbol:   class UserDetails
+  location: class com.examly.springapp.config.UserDetailsServiceImpl
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[19,64] cannot find symbol
+  symbol:   class UsernameNotFoundException
+  location: class com.examly.springapp.config.UserDetailsServiceImpl
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/UserServiceImpl.java:[7,52] package org.springframework.security.crypto.password does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/UserServiceImpl.java:[20,13] cannot find symbol
+  symbol:   class PasswordEncoder
+  location: class com.examly.springapp.service.UserServiceImpl
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[7,41] package org.springframework.security.core does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[8,51] package org.springframework.security.core.authority does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[9,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[12,43] cannot find symbol
+  symbol: class UserDetails
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[16,26] cannot find symbol
+  symbol:   class GrantedAuthority
+  location: class com.examly.springapp.config.CustomUserDetails
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[28,33] cannot find symbol
+  symbol:   class GrantedAuthority
+  location: class com.examly.springapp.config.CustomUserDetails
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[9,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[12,23] package io.jsonwebtoken does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[13,23] package io.jsonwebtoken does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[14,23] package io.jsonwebtoken does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[15,26] package io.jsonwebtoken.io does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[16,32] package io.jsonwebtoken.security does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[31,54] cannot find symbol
+  symbol:   class Claims
+  location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[36,12] cannot find symbol
+  symbol:   class Claims
+  location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[48,48] cannot find symbol
+  symbol:   class UserDetails
+  location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[9,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[10,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[11,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[12,41] package org.springframework.security.core does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[13,52] package org.springframework.security.crypto.password does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[41,13] cannot find symbol
+  symbol:   class AuthenticationManager
+  location: class com.examly.springapp.controller.AuthController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/OtpService.java:[4,32] package org.springframework.mail does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/OtpService.java:[5,41] package org.springframework.mail.javamail does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[78,13] cannot find symbol
+  symbol:   class PasswordEncoder
+  location: class com.examly.springapp.controller.AuthController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/OtpService.java:[17,13] cannot find symbol
+  symbol:   class JavaMailSender
+  location: class com.examly.springapp.service.OtpService
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[6,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[7,49] package org.springframework.security.core.context does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[8,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[9,55] package org.springframework.security.web.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[6,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[7,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[8,55] package org.springframework.security.authentication.dao does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[9,83] package org.springframework.security.config.annotation.authentication.configuration does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[10,75] package org.springframework.security.config.annotation.method.configuration does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[11,67] package org.springframework.security.config.annotation.web.builders does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[12,72] package org.springframework.security.config.annotation.web.configuration does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[13,48] package org.springframework.security.config.http does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[14,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[15,50] package org.springframework.security.crypto.bcrypt does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[16,52] package org.springframework.security.crypto.password does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[17,40] package org.springframework.security.web does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[18,55] package org.springframework.security.web.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[21,2] cannot find symbol
+  symbol: class EnableWebSecurity
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[22,2] cannot find symbol
+  symbol: class EnableMethodSecurity
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[26,5] cannot find symbol
+  symbol:   class UserDetailsService
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[32,48] cannot find symbol
+  symbol:   class HttpSecurity
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[32,8] cannot find symbol
+  symbol:   class SecurityFilterChain
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[76,12] cannot find symbol
+  symbol:   class PasswordEncoder
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[81,12] cannot find symbol
+  symbol:   class AuthenticationProvider
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[89,56] cannot find symbol
+  symbol:   class AuthenticationConfiguration
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[89,12] cannot find symbol
+  symbol:   class AuthenticationManager
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[8,16] package org.json does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[19,20] package com.razorpay does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[20,20] package com.razorpay does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[18,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[22,23] cannot find symbol
+  symbol:   class UsernameNotFoundException
+  location: class com.examly.springapp.config.UserDetailsServiceImpl
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[22,14] cannot find symbol
+  symbol:   class GrantedAuthority
+  location: class com.examly.springapp.config.CustomUserDetails
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[23,23] cannot find symbol
+  symbol:   class SimpleGrantedAuthority
+  location: class com.examly.springapp.config.CustomUserDetails
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[27,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[32,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[37,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[42,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[47,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[52,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[57,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[24,36] cannot find symbol
+  symbol:   variable Claims
+  location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[28,36] cannot find symbol
+  symbol:   variable Claims
+  location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[32,15] cannot find symbol
+  symbol:   class Claims
+  location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[37,16] cannot find symbol
+  symbol:   variable Jwts
+  location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[64,41] cannot find symbol
+  symbol:   variable SignatureAlgorithm
+  location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[59,16] cannot find symbol
+  symbol:   variable Jwts
+  location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[69,35] package Decoders does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[70,16] cannot find symbol
+  symbol:   variable Keys
+  location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[95,13] cannot find symbol
+  symbol:   class Authentication
+  location: class com.examly.springapp.controller.AuthController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[96,25] cannot find symbol
+  symbol:   class UsernamePasswordAuthenticationToken
+  location: class com.examly.springapp.controller.AuthController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[115,18] cannot find symbol
+  symbol:   class BadCredentialsException
+  location: class com.examly.springapp.controller.AuthController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/OtpService.java:[27,9] cannot find symbol
+  symbol:   class SimpleMailMessage
+  location: class com.examly.springapp.service.OtpService
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/OtpService.java:[27,41] cannot find symbol
+  symbol:   class SimpleMailMessage
+  location: class com.examly.springapp.service.OtpService
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[40,30] cannot find symbol
+  symbol:   variable SecurityContextHolder
+  location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[41,13] cannot find symbol
+  symbol:   class UserDetails
+  location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[43,17] cannot find symbol
+  symbol:   class UsernamePasswordAuthenticationToken
+  location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[44,29] cannot find symbol
+  symbol:   class UsernamePasswordAuthenticationToken
+  location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[45,52] cannot find symbol
+  symbol:   class WebAuthenticationDetailsSource
+  location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[46,17] cannot find symbol
+  symbol:   variable SecurityContextHolder
+  location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[71,51] cannot find symbol
+  symbol:   class UsernamePasswordAuthenticationFilter
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[46,69] cannot find symbol
+  symbol:   variable SessionCreationPolicy
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[77,20] cannot find symbol
+  symbol:   class BCryptPasswordEncoder
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[82,9] cannot find symbol
+  symbol:   class DaoAuthenticationProvider
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[82,64] cannot find symbol
+  symbol:   class DaoAuthenticationProvider
+  location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[63,13] cannot find symbol
+  symbol:   class RazorpayClient
+  location: class com.examly.springapp.controller.PaymentController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[63,41] cannot find symbol
+  symbol:   class RazorpayClient
+  location: class com.examly.springapp.controller.PaymentController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[65,13] cannot find symbol
+  symbol:   class JSONObject
+  location: class com.examly.springapp.controller.PaymentController
+[INFO] 100 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.110 s
+[INFO] Finished at: 2026-04-05T14:25:08+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project springapp: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[4,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[5,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[6,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[13,48] cannot find symbol
+[ERROR]   symbol: class UserDetailsService
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[19,12] cannot find symbol
+[ERROR]   symbol:   class UserDetails
+[ERROR]   location: class com.examly.springapp.config.UserDetailsServiceImpl
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[19,64] cannot find symbol
+[ERROR]   symbol:   class UsernameNotFoundException
+[ERROR]   location: class com.examly.springapp.config.UserDetailsServiceImpl
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/UserServiceImpl.java:[7,52] package org.springframework.security.crypto.password does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/UserServiceImpl.java:[20,13] cannot find symbol
+[ERROR]   symbol:   class PasswordEncoder
+[ERROR]   location: class com.examly.springapp.service.UserServiceImpl
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[7,41] package org.springframework.security.core does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[8,51] package org.springframework.security.core.authority does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[9,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[12,43] cannot find symbol
+[ERROR]   symbol: class UserDetails
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[16,26] cannot find symbol
+[ERROR]   symbol:   class GrantedAuthority
+[ERROR]   location: class com.examly.springapp.config.CustomUserDetails
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[28,33] cannot find symbol
+[ERROR]   symbol:   class GrantedAuthority
+[ERROR]   location: class com.examly.springapp.config.CustomUserDetails
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[9,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[12,23] package io.jsonwebtoken does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[13,23] package io.jsonwebtoken does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[14,23] package io.jsonwebtoken does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[15,26] package io.jsonwebtoken.io does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[16,32] package io.jsonwebtoken.security does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[31,54] cannot find symbol
+[ERROR]   symbol:   class Claims
+[ERROR]   location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[36,12] cannot find symbol
+[ERROR]   symbol:   class Claims
+[ERROR]   location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[48,48] cannot find symbol
+[ERROR]   symbol:   class UserDetails
+[ERROR]   location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[9,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[10,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[11,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[12,41] package org.springframework.security.core does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[13,52] package org.springframework.security.crypto.password does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[41,13] cannot find symbol
+[ERROR]   symbol:   class AuthenticationManager
+[ERROR]   location: class com.examly.springapp.controller.AuthController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/OtpService.java:[4,32] package org.springframework.mail does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/OtpService.java:[5,41] package org.springframework.mail.javamail does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[78,13] cannot find symbol
+[ERROR]   symbol:   class PasswordEncoder
+[ERROR]   location: class com.examly.springapp.controller.AuthController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/OtpService.java:[17,13] cannot find symbol
+[ERROR]   symbol:   class JavaMailSender
+[ERROR]   location: class com.examly.springapp.service.OtpService
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[6,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[7,49] package org.springframework.security.core.context does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[8,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[9,55] package org.springframework.security.web.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[6,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[7,51] package org.springframework.security.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[8,55] package org.springframework.security.authentication.dao does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[9,83] package org.springframework.security.config.annotation.authentication.configuration does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[10,75] package org.springframework.security.config.annotation.method.configuration does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[11,67] package org.springframework.security.config.annotation.web.builders does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[12,72] package org.springframework.security.config.annotation.web.configuration does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[13,48] package org.springframework.security.config.http does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[14,53] package org.springframework.security.core.userdetails does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[15,50] package org.springframework.security.crypto.bcrypt does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[16,52] package org.springframework.security.crypto.password does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[17,40] package org.springframework.security.web does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[18,55] package org.springframework.security.web.authentication does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[21,2] cannot find symbol
+[ERROR]   symbol: class EnableWebSecurity
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[22,2] cannot find symbol
+[ERROR]   symbol: class EnableMethodSecurity
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[26,5] cannot find symbol
+[ERROR]   symbol:   class UserDetailsService
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[32,48] cannot find symbol
+[ERROR]   symbol:   class HttpSecurity
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[32,8] cannot find symbol
+[ERROR]   symbol:   class SecurityFilterChain
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[76,12] cannot find symbol
+[ERROR]   symbol:   class PasswordEncoder
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[81,12] cannot find symbol
+[ERROR]   symbol:   class AuthenticationProvider
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[89,56] cannot find symbol
+[ERROR]   symbol:   class AuthenticationConfiguration
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[89,12] cannot find symbol
+[ERROR]   symbol:   class AuthenticationManager
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[8,16] package org.json does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[19,20] package com.razorpay does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[20,20] package com.razorpay does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[18,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/UserDetailsServiceImpl.java:[22,23] cannot find symbol
+[ERROR]   symbol:   class UsernameNotFoundException
+[ERROR]   location: class com.examly.springapp.config.UserDetailsServiceImpl
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[22,14] cannot find symbol
+[ERROR]   symbol:   class GrantedAuthority
+[ERROR]   location: class com.examly.springapp.config.CustomUserDetails
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[23,23] cannot find symbol
+[ERROR]   symbol:   class SimpleGrantedAuthority
+[ERROR]   location: class com.examly.springapp.config.CustomUserDetails
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[27,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[32,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[37,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[42,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[47,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[52,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/CustomUserDetails.java:[57,5] method does not override or implement a method from a supertype
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[24,36] cannot find symbol
+[ERROR]   symbol:   variable Claims
+[ERROR]   location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[28,36] cannot find symbol
+[ERROR]   symbol:   variable Claims
+[ERROR]   location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[32,15] cannot find symbol
+[ERROR]   symbol:   class Claims
+[ERROR]   location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[37,16] cannot find symbol
+[ERROR]   symbol:   variable Jwts
+[ERROR]   location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[64,41] cannot find symbol
+[ERROR]   symbol:   variable SignatureAlgorithm
+[ERROR]   location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[59,16] cannot find symbol
+[ERROR]   symbol:   variable Jwts
+[ERROR]   location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[69,35] package Decoders does not exist
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtUtils.java:[70,16] cannot find symbol
+[ERROR]   symbol:   variable Keys
+[ERROR]   location: class com.examly.springapp.config.JwtUtils
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[95,13] cannot find symbol
+[ERROR]   symbol:   class Authentication
+[ERROR]   location: class com.examly.springapp.controller.AuthController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[96,25] cannot find symbol
+[ERROR]   symbol:   class UsernamePasswordAuthenticationToken
+[ERROR]   location: class com.examly.springapp.controller.AuthController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/AuthController.java:[115,18] cannot find symbol
+[ERROR]   symbol:   class BadCredentialsException
+[ERROR]   location: class com.examly.springapp.controller.AuthController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/OtpService.java:[27,9] cannot find symbol
+[ERROR]   symbol:   class SimpleMailMessage
+[ERROR]   location: class com.examly.springapp.service.OtpService
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/service/OtpService.java:[27,41] cannot find symbol
+[ERROR]   symbol:   class SimpleMailMessage
+[ERROR]   location: class com.examly.springapp.service.OtpService
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[40,30] cannot find symbol
+[ERROR]   symbol:   variable SecurityContextHolder
+[ERROR]   location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[41,13] cannot find symbol
+[ERROR]   symbol:   class UserDetails
+[ERROR]   location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[43,17] cannot find symbol
+[ERROR]   symbol:   class UsernamePasswordAuthenticationToken
+[ERROR]   location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[44,29] cannot find symbol
+[ERROR]   symbol:   class UsernamePasswordAuthenticationToken
+[ERROR]   location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[45,52] cannot find symbol
+[ERROR]   symbol:   class WebAuthenticationDetailsSource
+[ERROR]   location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/JwtAuthenticationFilter.java:[46,17] cannot find symbol
+[ERROR]   symbol:   variable SecurityContextHolder
+[ERROR]   location: class com.examly.springapp.config.JwtAuthenticationFilter
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[71,51] cannot find symbol
+[ERROR]   symbol:   class UsernamePasswordAuthenticationFilter
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[46,69] cannot find symbol
+[ERROR]   symbol:   variable SessionCreationPolicy
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[77,20] cannot find symbol
+[ERROR]   symbol:   class BCryptPasswordEncoder
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[82,9] cannot find symbol
+[ERROR]   symbol:   class DaoAuthenticationProvider
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/config/SecurityConfig.java:[82,64] cannot find symbol
+[ERROR]   symbol:   class DaoAuthenticationProvider
+[ERROR]   location: class com.examly.springapp.config.SecurityConfig
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[63,13] cannot find symbol
+[ERROR]   symbol:   class RazorpayClient
+[ERROR]   location: class com.examly.springapp.controller.PaymentController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[63,41] cannot find symbol
+[ERROR]   symbol:   class RazorpayClient
+[ERROR]   location: class com.examly.springapp.controller.PaymentController
+[ERROR] /C:/Users/Bhuvan/finance hub/springapp/src/main/java/com/examly/springapp/controller/PaymentController.java:[65,13] cannot find symbol
+[ERROR]   symbol:   class JSONObject
+[ERROR]   location: class com.examly.springapp.controller.PaymentController
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

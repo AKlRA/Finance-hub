@@ -1,0 +1,43 @@
+/* ===== CUSTOM SCROLLBAR - GLOBAL ===== */
+
+/* Width */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+/* Track (background) */
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+    border-radius: 10px;
+  }
+
+/* Handle (thumb) */
+
+::-webkit-scrollbar-thumb {
+    background: #2d2d2d;
+    border-radius: 10px;
+    border: 1px solid #1a1a1a;
+  }
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ef4444;  /* red-500 - matches your theme */
+  }
+
+/* Handle on drag */
+
+::-webkit-scrollbar-thumb:active {
+    background: #dc2626;  /* red-600 */
+  }
+
+/* Corner where horizontal and vertical scrollbars meet */
+
+::-webkit-scrollbar-corner {
+    background: #0a0a0a;
+  }
+
+/*# sourceMappingURL=styles.css.map*/
