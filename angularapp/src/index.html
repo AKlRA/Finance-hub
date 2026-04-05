@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Finance Hub Dashboard</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <script src="https://cdn.tailwindcss.com" ></script>
+  <!-- NOSONAR -->
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+  crossorigin="anonymous">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            dark: '#0a0a0a',
+            darker: '#000000',
+            card: '#141414',
+            primary: '#e11d48',
+            primaryHover: '#be123c',
+          }
+        }
+      }
+    }
+
+  </script>
+
+</head>
+
+<body class="bg-dark text-gray-200 font-sans antialiased overflow-x-hidden">
+  <app-root></app-root>
+</body>
+
+</html>
