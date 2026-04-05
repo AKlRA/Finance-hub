@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  groq: '',
+  groq: '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',
   razorpayScriptUrl: 'https://checkout.razorpay.com/v1/checkout.js'
 };
 
