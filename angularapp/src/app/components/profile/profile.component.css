@@ -1,0 +1,10 @@
+/* profile.component.css */
+/* All styling via Tailwind in HTML. Add overrides here if needed. */
+
+:host {
+    display: block;
+  }
+  
+  input[readonly] {
+    user-select: text;
+  }

@@ -1,0 +1,102 @@
+/* --- Global Theme & Card --- */
+.bg-card {
+    background-color: #0f172a !important; /* Deep Navy Dark */
+    border: 1px solid #1e293b !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.text-primary {
+    color: #3b82f6 !important;
+}
+
+/* --- Two-Column Layout Logic --- */
+@media (min-width: 768px) {
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    /* Target each row to be a half-width column */
+    form .row {
+        flex: 0 0 48% !important; /* Set width to roughly half */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        display: flex !important;
+        flex-direction: column !important; /* Stack label over input */
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* Force Bootstrap column classes to fill the 48% width */
+    form .col-sm-4, 
+    form .col-sm-8 {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Keep 'Selected Plan' and 'Submit' full width */
+    form .row:nth-last-child(2),
+    .text-start {
+        flex: 0 0 100% !important;
+    }
+}
+
+/* --- Input Field Styling --- */
+.form-control {
+    background-color: #1e293b !important; /* Dark Slate */
+    border: 1px solid #334155 !important;
+    color: #f1f5f9 !important;
+    padding: 0.75rem !important;
+    border-radius: 8px !important;
+    width: 100% !important; /* Fix for narrow inputs */
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    background-color: #0f172a !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3) !important;
+    outline: none;
+}
+
+.form-control[readonly] {
+    background-color: #1e293b !important;
+    opacity: 0.6;
+    border-style: dashed;
+}
+
+/* --- Labels & Text --- */
+.col-form-label {
+    color: #94a3b8 !important; /* Muted Slate */
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+    padding: 0 !important;
+}
+
+.text-danger {
+    color: #f87171 !important;
+}
+
+/* --- Submit Button --- */
+.btn-success {
+    background-color: #10b981 !important; /* Emerald */
+    border: none !important;
+    padding: 12px 40px !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-success:hover:not(:disabled) {
+    background-color: #059669 !important;
+    filter: brightness(1.1);
+}
+
+.btn-success:disabled {
+    background-color: #334155 !important;
+    color: #64748b !important;
+}

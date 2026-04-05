@@ -1,0 +1,26 @@
+#FrontEnd
+angularapp/node_modules
+angularapp/package.json
+angularapp/package-lock.json
+angularapp/.editorconfig
+angularapp/karma.conf.js
+angularapp/angular.json
+angularapp/tsconfig.app.json
+angularapp/tsconfig.json
+angularapp/tsconfig.spec.json
+angularapp/src/app/models/user.model.spec.ts
+angularapp/src/app/models/login.model.spec.ts
+angularapp/src/tailwind-local.js
+angularapp/src/index.html
+
+junit
+karma
+
+#BackEnd
+springapp/.mvn
+springapp/target
+springapp/HELP.md 
+springapp/mvnw
+springapp/mvnw.cmd
+springapp/pom.xml
+springapp/src/main/resources/ application-local.properties

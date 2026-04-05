@@ -1,0 +1,21 @@
+.table-container { width: 100%; border-radius: 12px; border: 1px solid #1f2937; overflow: hidden; }
+.custom-table { width: 100%; table-layout: fixed; border-collapse: collapse; }
+.custom-table th { background: #111827; color: #9ca3af; padding: 1rem; text-align: left; font-size: 0.75rem; border-bottom: 2px solid #1f2937; }
+.custom-table td { padding: 1rem; color: #d1d5db; font-size: 0.875rem; border-bottom: 1px solid #1f2937; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Fixed Column Widths */
+.col-id { width: 70px; }
+.col-plan { width: 200px; }
+.col-amount { width: 110px; }
+.col-date { width: 130px; }
+.col-proof { width: 90px; }
+.col-status { width: 120px; }
+
+/* UI Elements */
+.view-btn { display: flex; align-items: center; gap: 4px; color: #60a5fa; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); padding: 4px 8px; border-radius: 4px; cursor: pointer; }
+.view-btn:hover { background: #3b82f6; color: white; }
+
+.status-badge { display: block; text-align: center; padding: 4px; border-radius: 99px; font-size: 10px; font-weight: bold; border: 1px solid; text-transform: uppercase; }
+.status-approved { background: rgba(16, 185, 129, 0.1); color: #10b981; border-color: rgba(16, 185, 129, 0.2); }
+.status-pending { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); }
+.status-rejected { background: rgba(239, 68, 68, 0.1); color: #ef4444; border-color: rgba(239, 68, 68, 0.2); }

@@ -1,0 +1,168 @@
+<div class="px-4 py-6 sm:px-0">
+
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-white tracking-tight">Dashboard</h1>
+        <p class="text-gray-400 mt-1 text-sm">Welcome back, Manager. Here's what's happening today.</p>
+    </div>
+
+    <div *ngIf="isLoading" class="flex flex-col items-center justify-center py-24">
+        <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-primary mb-4"></div>
+        <p class="text-gray-400 text-sm">Loading dashboard...</p>
+    </div>
+
+    <div *ngIf="!isLoading">
+
+        <!-- Stat Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+
+            <div (click)="navigate('/manager/view-savings-plan')"
+                (keydown.enter)="navigate('/manager/view-savings-plan')"
+                (keydown.space)="navigate('/manager/view-savings-plan')"
+                tabindex="0"
+                role="button"
+                class="bg-card border border-gray-800 rounded-xl p-6 cursor-pointer hover:border-primary transition-colors shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Savings Plans</p>
+                    <div class="bg-primary/10 p-2 rounded-lg">
+                        <svg class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                    </div>
+                </div>
+                <p class="text-4xl font-bold text-white">{{ totalPlans }}</p>
+                <p class="text-gray-500 text-xs mt-2">Total active plans</p>
+            </div>
+
+            <div (click)="navigate('/manager/view-application-form')"
+                (keydown.enter)="navigate('/manager/view-application-form')"
+                (keydown.space)="navigate('/manager/view-application-form')"
+                tabindex="0"
+                role="button"
+                class="bg-card border border-gray-800 rounded-xl p-6 cursor-pointer hover:border-primary transition-colors shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Applications</p>
+                    <div class="bg-yellow-500/10 p-2 rounded-lg">
+                        <svg class="h-5 w-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
+                </div>
+                <p class="text-4xl font-bold text-white">{{ totalApplications }}</p>
+                <p class="text-gray-500 text-xs mt-2">Total submitted</p>
+            </div>
+
+            <div (click)="navigate('/manager/view-feedback')"
+                (keydown.enter)="navigate('/manager/view-feedback')"
+                (keydown.space)="navigate('/manager/view-feedback')"
+                tabindex="0"
+                role="button"
+                class="bg-card border border-gray-800 rounded-xl p-6 cursor-pointer hover:border-primary transition-colors shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Feedbacks</p>
+                    <div class="bg-green-500/10 p-2 rounded-lg">
+                        <svg class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                        </svg>
+                    </div>
+                </div>
+                <p class="text-4xl font-bold text-white">{{ totalFeedbacks }}</p>
+                <p class="text-gray-500 text-xs mt-2">Customer feedbacks</p>
+            </div>
+
+            <div (click)="navigate('/manager/view-enquiries')"
+                (keydown.enter)="navigate('/manager/view-enquiries')"
+                (keydown.space)="navigate('/manager/view-enquiries')"
+                tabindex="0"
+                role="button"
+                class="bg-card border border-gray-800 rounded-xl p-6 cursor-pointer hover:border-primary transition-colors shadow-lg">
+                <div class="flex items-center justify-between mb-4">
+                    <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Enquiries</p>
+                    <div class="bg-blue-500/10 p-2 rounded-lg">
+                        <svg class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                        </svg>
+                    </div>
+                </div>
+                <p class="text-4xl font-bold text-white">{{ totalEnquiries }}</p>
+                <p class="text-gray-500 text-xs mt-2">Open enquiries</p>
+            </div>
+        </div>
+
+        <!-- Bottom Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Bar Chart -->
+            <div class="lg:col-span-2 bg-card border border-gray-800 rounded-xl p-6 shadow-lg">
+                <h3 class="text-white font-semibold text-lg mb-1">Application Status Overview</h3>
+                <p class="text-gray-500 text-xs mb-8">Breakdown of all plan applications by status</p>
+
+                <div class="flex items-end justify-around h-48 px-4">
+                    <div *ngFor="let bar of barData" class="flex flex-col items-center gap-2 w-24">
+                        <span class="text-white font-bold text-lg">{{ bar.count }}</span>
+                        <div class="w-16 rounded-t-lg transition-all duration-700"
+                            [style.height]="getBarHeight(bar.count)"
+                            [style.background-color]="bar.color"
+                            [style.min-height]="'8px'">
+                        </div>
+                        <span class="text-gray-400 text-xs font-medium">{{ bar.label }}</span>
+                    </div>
+                </div>
+                <div class="border-t border-gray-700 mt-2 mx-4"></div>
+            </div>
+
+            <!-- Recent Enquiries -->
+            <div class="bg-card border border-gray-800 rounded-xl p-6 shadow-lg flex flex-col">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-white font-semibold text-lg mb-1">Recent Enquiries</h3>
+                        <p class="text-gray-500 text-xs">Latest customer enquiries</p>
+                    </div>
+                    <button (click)="navigate('/manager/view-enquiries')"
+                        class="text-xs text-primary hover:text-white transition-colors font-medium">
+                        View all →
+                    </button>
+                </div>
+
+                <!-- Enquiry List -->
+                <div class="space-y-3 flex-1">
+                    <div *ngFor="let enquiry of recentEnquiries"
+                        class="bg-gray-900/50 border border-gray-800 rounded-lg p-3 hover:border-gray-700 transition-colors">
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="flex items-center">
+                                <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center mr-2 flex-shrink-0">
+                                    <svg class="w-3.5 h-3.5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span class="text-white text-xs font-semibold">
+                                    {{ enquiry.user?.username || 'Customer' }}
+                                </span>
+                            </div>
+                            <span class="text-gray-600 text-xs">#{{ enquiry.enquiryId }}</span>
+                        </div>
+                        <p class="text-gray-400 text-xs leading-relaxed pl-9">
+                            {{ enquiry.message?.length > 60 ? (enquiry.message | slice:0:60) + '...' : enquiry.message }}
+                        </p>
+                    </div>
+
+                    <!-- Empty state -->
+                    <div *ngIf="recentEnquiries.length === 0"
+                        class="flex flex-col items-center justify-center py-8 text-center">
+                        <svg class="h-10 w-10 text-gray-700 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <p class="text-gray-500 text-xs">No enquiries yet</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

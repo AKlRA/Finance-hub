@@ -1,0 +1,109 @@
+<div class="px-4 py-6 sm:px-0">
+    <div class="flex justify-between items-center mb-6 border-b border-gray-800 pb-4 gap-4">
+      <h2 class="text-2xl font-bold text-white tracking-tight">Available Savings Plans</h2>
+  
+      <div class="relative flex-grow max-w-xs">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg class="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input
+          type="text"
+          name="search"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+          placeholder="Search plan name..."
+          [disabled]="isLoading"
+          class="block w-full pl-10 pr-3 py-2 border border-gray-700 rounded-md bg-gray-900 text-gray-300 placeholder-gray-500 focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm disabled:opacity-50"
+        />
+      </div>
+    </div>
+  
+    <!-- ────────── LOADING SPINNER ────────── -->
+    <div *ngIf="isLoading" class="flex flex-col items-center justify-center py-32 gap-4">
+      <div class="text-6xl animate-bounce">💰</div>
+      <div class="flex gap-1">
+        <span class="h-2 w-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+        <span class="h-2 w-2 bg-primary rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+        <span class="h-2 w-2 bg-primary rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+      </div>
+      <p class="text-gray-400 text-sm tracking-widest uppercase">Loading savings plans...</p>
+    </div>
+  
+    <!-- ────────── LOADED: PLAN CARDS ────────── -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      *ngIf="!isLoading && savingsPlans.length > 0"
+    >
+      <div
+        class="bg-card rounded-xl border border-gray-800 shadow-lg overflow-hidden flex flex-col transition-transform hover:-translate-y-1 duration-300"
+        *ngFor="let plan of savingsPlans"
+      >
+        <div class="p-6 flex-1">
+          <div class="flex justify-between items-start mb-4">
+            <h4 class="text-xl font-bold text-primary truncate mr-2">{{ plan.name }}</h4>
+            <span
+              [ngClass]="{
+                'text-green-400 bg-green-900/30 border-green-800': plan.riskLevel === 'Low',
+                'text-yellow-400 bg-yellow-900/30 border-yellow-800': plan.riskLevel === 'Medium',
+                'text-red-400 bg-red-900/30 border-red-800': plan.riskLevel === 'High'
+              }"
+              class="px-2 py-0.5 rounded text-[10px] uppercase font-bold border whitespace-nowrap"
+            >
+              {{ plan.riskLevel }} Risk
+            </span>
+          </div>
+  
+          <div class="h-px bg-gray-800 w-full mb-4"></div>
+          <p class="text-gray-400 text-sm mb-6 line-clamp-3 min-h-[4.5rem]">{{ plan.description }}</p>
+  
+          <div class="space-y-3 text-gray-300">
+            <div class="flex justify-between items-center">
+              <span class="text-gray-500 text-sm">Target Goal:</span>
+              <span class="font-medium text-white text-lg">₹{{ plan.goalAmount | number }}</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-gray-500 text-sm">Status:</span>
+              <div class="flex items-center">
+                <span
+                  class="h-2 w-2 rounded-full mr-2"
+                  [ngClass]="plan.status === 'Active' ? 'bg-green-500' : 'bg-red-600'"
+                ></span>
+                <span
+                  class="text-sm font-medium"
+                  [ngClass]="plan.status === 'Active' ? 'text-green-400' : 'text-red-400'"
+                >{{ plan.status }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="px-6 pb-6 pt-2">
+          <button
+            [disabled]="plan.status === 'Inactive'"
+            [ngClass]="plan.status === 'Active'
+              ? 'border-primary text-primary hover:bg-primary hover:text-black'
+              : 'border-gray-700 text-gray-600 bg-gray-800/50'"
+            class="w-full py-2.5 border rounded-lg font-medium transition-colors"
+            (click)="applyForPlan(plan.savingsPlanId)"
+          >
+            {{ plan.status === 'Active' ? 'Apply Now' : 'Currently Unavailable' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- ────────── NO RESULTS (after load) ────────── -->
+    <div
+      class="flex flex-col items-center justify-center py-16 px-4 bg-card rounded-xl border border-gray-800 border-dashed"
+      *ngIf="!isLoading && savingsPlans.length === 0"
+    >
+      <svg class="h-10 w-10 text-gray-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <p class="text-gray-400 font-medium">No plans matching "{{ searchTerm }}"</p>
+    </div>
+  </div>

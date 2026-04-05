@@ -1,0 +1,354 @@
+<div class="px-4 py-6 sm:px-0">
+
+  <h2 class="text-2xl font-bold text-white mb-6">My Plan Applications</h2>
+
+  <!-- Error -->
+  <div *ngIf="errorMessage" class="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded-md mb-4 text-sm">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="flex flex-col items-center justify-center py-32 gap-4">
+    <div class="text-6xl animate-bounce">📋</div>
+    <div class="flex gap-1">
+      <span class="h-2 w-2 bg-red-500 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+      <span class="h-2 w-2 bg-red-500 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+      <span class="h-2 w-2 bg-red-500 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+    </div>
+    <p class="text-gray-400 text-sm tracking-widest uppercase">Loading your applications...</p>
+  </div>
+
+  <!-- Table -->
+  <div *ngIf="!isLoading" class="bg-[#0f172a] rounded-xl border border-gray-800 shadow-xl overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-gray-900/60 border-b border-gray-800">
+            <th class="text-left text-gray-400 font-semibold px-4 py-3">ID</th>
+            <th class="text-left text-gray-400 font-semibold px-4 py-3">Plan Details</th>
+            <th class="text-left text-gray-400 font-semibold px-4 py-3">Amount</th>
+            <th class="text-left text-gray-400 font-semibold px-4 py-3">Monthly</th>
+            <th class="text-left text-gray-400 font-semibold px-4 py-3">Date</th>
+            <th class="text-left text-gray-400 font-semibold px-4 py-3">Proof</th>
+            <th class="text-left text-gray-400 font-semibold px-4 py-3">Remarks</th>
+            <th class="text-left text-gray-400 font-semibold px-4 py-3">Status</th>
+            <th class="text-left text-gray-400 font-semibold px-4 py-3">Progress</th>
+            <th class="text-left text-gray-400 font-semibold px-4 py-3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let app of paginatedApplications"
+            class="border-b border-gray-800/60 hover:bg-gray-900/30 transition-colors">
+
+            <!-- ID -->
+            <td class="px-4 py-4 text-gray-400">#{{ app.planApplicationId }}</td>
+
+            <!-- Plan name -->
+            <td class="px-4 py-4 text-white font-medium">{{ app.savingsPlan?.name }}</td>
+
+            <!-- Goal Amount -->
+            <td class="px-4 py-4 text-white">₹{{ app.savingsPlan?.goalAmount | number }}</td>
+
+            <!-- Monthly installment -->
+            <td class="px-4 py-4">
+              <span *ngIf="app.installmentAmount > 0" class="text-red-400 font-semibold">
+                ₹{{ app.installmentAmount | number }}
+              </span>
+              <span *ngIf="!app.installmentAmount || app.installmentAmount === 0" class="text-gray-500 text-xs">—</span>
+              <span *ngIf="app.installmentAmount > 0" class="text-gray-500 text-xs"> /mo</span>
+            </td>
+
+            <!-- Date -->
+            <td class="px-4 py-4 text-gray-300">{{ app.applicationDate }}</td>
+
+            <!-- Proof -->
+            <td class="px-4 py-4">
+              <button
+                *ngIf="app.proofDocument"
+                (click)="viewProof(app.proofDocument)"
+                class="inline-flex items-center gap-1 bg-blue-600/20 hover:bg-blue-600/40 border border-blue-500/40 hover:border-blue-400 text-blue-400 hover:text-blue-300 text-xs font-semibold px-2.5 py-1 rounded-lg transition-all duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+                View
+              </button>
+              <span *ngIf="!app.proofDocument" class="text-gray-600 text-xs">—</span>
+            </td>
+
+            <!-- Remarks -->
+            <td class="px-4 py-4 text-gray-300 max-w-[100px] truncate">{{ app.remarks }}</td>
+
+            <!-- Application Status -->
+            <td class="px-4 py-4">
+              <span
+                [ngClass]="{
+                  'bg-yellow-900/50 text-yellow-300 border-yellow-700': app.status === 'PENDING',
+                  'bg-green-900/50 text-green-300 border-green-700':   app.status === 'APPROVED',
+                  'bg-red-900/50 text-red-300 border-red-700':         app.status === 'REJECTED'
+                }"
+                class="border text-xs font-bold px-2 py-1 rounded-full uppercase">
+                {{ app.status }}
+              </span>
+            </td>
+
+            <!-- Installment Progress -->
+            <td class="px-4 py-4">
+              <div *ngIf="app.totalInstallments > 0; else noProgress">
+                <div class="flex items-center gap-2">
+                  <div class="w-16 bg-gray-700 rounded-full h-1.5 overflow-hidden">
+                    <div
+                      class="h-full rounded-full transition-all duration-500"
+                      [ngClass]="app.status === 'REJECTED' ? 'bg-gray-600' : app.paymentStatus === 'COMPLETED' ? 'bg-green-500' : 'bg-red-500'"
+                      [style.width.%]="app.status === 'REJECTED' ? 100 : progressPercent(app)">
+                    </div>
+                  </div>
+                  <span class="text-gray-400 text-xs whitespace-nowrap">
+                    {{ app.installmentsPaid }}/{{ app.totalInstallments }}
+                  </span>
+                </div>
+                <div class="mt-1 flex items-center gap-2">
+                  <span *ngIf="app.paymentStatus === 'COMPLETED'" class="text-green-400 text-[10px] font-semibold">🎉 Completed</span>
+                  <span *ngIf="app.paymentStatus === 'IN_PROGRESS'" class="text-blue-400 text-[10px]">In Progress</span>
+                  <span *ngIf="app.paymentStatus === 'PENDING' && app.status !== 'REJECTED'" class="text-yellow-400 text-[10px]">Not Started</span>
+                  <span *ngIf="app.status === 'REJECTED'" class="text-red-400 text-[10px] font-semibold">❌ Not Applicable</span>
+
+                  <!-- History button -->
+                  <button
+                    *ngIf="app.status === 'APPROVED' && app.installmentsPaid > 0"
+                    (click)="viewHistory(app)"
+                    class="inline-flex items-center gap-1 bg-indigo-600/20 hover:bg-indigo-600/40 border border-indigo-500/40 hover:border-indigo-400 text-indigo-400 hover:text-indigo-300 text-[10px] font-semibold px-2 py-0.5 rounded-lg transition-all duration-200 whitespace-nowrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    History
+                  </button>
+                </div>
+              </div>
+              <ng-template #noProgress>
+                <span class="text-gray-600 text-xs">—</span>
+              </ng-template>
+            </td>
+
+            <!-- Action column -->
+            <td class="px-4 py-4">
+              <div class="flex flex-col gap-1.5">
+
+                <!-- Pay Installment -->
+                <button
+                  *ngIf="app.status === 'APPROVED' && app.totalInstallments > 0 && app.paymentStatus !== 'COMPLETED'"
+                  (click)="payInstallment(app)"
+                  [disabled]="paymentLoading === app.planApplicationId"
+                  class="inline-flex items-center justify-center gap-1 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">
+                  <span *ngIf="paymentLoading !== app.planApplicationId">
+                    💳 Pay #{{ (app.installmentsPaid || 0) + 1 }}
+                  </span>
+                  <span *ngIf="paymentLoading === app.planApplicationId" class="inline-flex items-center gap-1">
+                    <svg class="animate-spin h-3 w-3 border border-white border-t-transparent rounded-full" viewBox="0 0 24 24"></svg>
+                    Loading...
+                  </span>
+                </button>
+
+                <!-- Withdrawal section — only when COMPLETED -->
+                <ng-container *ngIf="app.paymentStatus === 'COMPLETED'">
+
+                  <!-- Not yet requested -->
+                  <button
+                    *ngIf="!app.withdrawalStatus"
+                    (click)="requestWithdrawal(app)"
+                    class="inline-flex items-center justify-center gap-1 bg-green-600 hover:bg-green-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">
+                    💰 Withdraw ₹{{ app.savingsPlan?.goalAmount | number }}
+                  </button>
+
+                  <!-- Pending admin review -->
+                  <span *ngIf="app.withdrawalStatus === 'REQUESTED'"
+                    class="inline-flex items-center gap-1 text-yellow-400 text-xs font-semibold whitespace-nowrap">
+                    ⏳ Withdrawal Pending
+                  </span>
+
+                  <!-- Approved -->
+                  <div *ngIf="app.withdrawalStatus === 'APPROVED'"
+                    class="bg-green-900/30 border border-green-700/40 rounded-lg px-2 py-1.5 text-center">
+                    <p class="text-green-400 text-xs font-bold m-0">✅ Withdrawn</p>
+                    <p class="text-green-300 text-[10px] m-0">₹{{ app.savingsPlan?.goalAmount | number }}</p>
+                  </div>
+
+                  <!-- Rejected — allow retry -->
+                  <button
+                    *ngIf="app.withdrawalStatus === 'REJECTED'"
+                    (click)="requestWithdrawal(app)"
+                    class="inline-flex items-center justify-center gap-1 bg-red-900/30 border border-red-500/40 hover:bg-red-900/50 text-red-400 text-xs font-bold px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap">
+                    Rejected — Retry
+                  </button>
+
+                </ng-container>
+
+                <!-- Awaiting / Rejected application status -->
+                <span *ngIf="app.status === 'PENDING'" class="text-yellow-400 text-xs">Awaiting Approval</span>
+                <span *ngIf="app.status === 'REJECTED'" class="text-red-400 text-xs">Rejected</span>
+
+                <!-- PDF button -->
+                <button
+                  (click)="downloadApplicationPDF(app)"
+                  class="inline-flex items-center gap-1 bg-gray-700/50 hover:bg-gray-700 border border-gray-600/40 hover:border-gray-500 text-white text-xs font-semibold px-2.5 py-1 rounded-lg transition-all duration-200 whitespace-nowrap">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                  </svg>
+                  Receipt
+                </button>
+
+              </div>
+            </td>
+          </tr>
+
+          <!-- Empty state -->
+          <tr *ngIf="applications.length === 0">
+            <td colspan="10" class="text-center text-gray-500 py-12">No applications found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex items-center justify-between px-4 py-3 border-t border-gray-800 text-sm text-gray-400">
+      <span>Showing {{ (currentPage - 1) * pageSize + 1 }} to {{ Math.min(currentPage * pageSize, applications.length) }} of {{ applications.length }}</span>
+      <div class="flex gap-2">
+        <button
+          (click)="changePage(currentPage - 1)"
+          [disabled]="currentPage === 1"
+          class="px-3 py-1 rounded border border-gray-700 hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors">
+          Previous
+        </button>
+        <span class="px-3 py-1 bg-red-600 text-white rounded font-bold">{{ currentPage }}/{{ totalPages }}</span>
+        <button
+          (click)="changePage(currentPage + 1)"
+          [disabled]="currentPage === totalPages"
+          class="px-3 py-1 rounded border border-gray-700 hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment History Modal -->
+  <div
+    *ngIf="showHistoryModal"
+    class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+    (click)="closeModal()"
+    (keydown.escape)="closeModal()"
+    (keydown.enter)="closeModal()"
+    tabindex="0"
+    role="button"
+    aria-label="Close modal">
+    <div
+      class="bg-[#0f172a] border border-gray-700 rounded-xl w-full max-w-lg shadow-2xl"
+      (click)="$event.stopPropagation()"
+      (keydown.enter)="$event.stopPropagation()"
+      (keydown.space)="$event.stopPropagation()"
+      (keydown.escape)="$event.stopPropagation()">
+
+      <div class="flex justify-between items-center px-6 py-4 border-b border-gray-800">
+        <h3 class="text-white font-bold text-base m-0">
+          📜 Payment History — {{ selectedApp?.savingsPlan?.name }}
+        </h3>
+        <button class="text-gray-400 hover:text-white text-2xl leading-none" (click)="closeModal()">×</button>
+      </div>
+
+      <div class="p-6">
+        <div class="grid grid-cols-3 gap-3 bg-gray-900/50 rounded-lg p-4 mb-4">
+          <div>
+            <p class="text-gray-400 text-xs mb-1">Monthly</p>
+            <p class="text-white font-bold m-0">₹{{ selectedApp?.installmentAmount | number }}</p>
+          </div>
+          <div class="text-center">
+            <p class="text-gray-400 text-xs mb-1">Paid</p>
+            <p class="text-green-400 font-bold m-0">{{ selectedApp?.installmentsPaid }}/{{ selectedApp?.totalInstallments }}</p>
+          </div>
+          <div class="text-right">
+            <p class="text-gray-400 text-xs mb-1">Remaining</p>
+            <p class="text-red-400 font-bold m-0">{{ (selectedApp?.totalInstallments - selectedApp?.installmentsPaid) }} left</p>
+          </div>
+        </div>
+
+        <div class="max-h-64 overflow-y-auto space-y-2">
+          <article
+            *ngFor="let p of paymentHistory"
+            class="flex justify-between items-center bg-gray-900/40 border border-gray-800 rounded-lg px-4 py-3">
+            <div>
+              <p class="text-white text-sm font-medium m-0">Installment #{{ p.installmentNumber }}</p>
+              <p class="text-gray-500 text-xs m-0">{{ p.paymentDate | date:'dd MMM yyyy, hh:mm a' }}</p>
+            </div>
+            <div class="text-right">
+              <p class="text-white font-semibold text-sm m-0">₹{{ p.amount | number }}</p>
+              <span class="text-green-400 text-xs font-bold">{{ p.status }}</span>
+            </div>
+          </article>
+          <p *ngIf="paymentHistory.length === 0" class="text-gray-500 text-sm text-center py-6">
+            No payments recorded yet.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Popup (error only) -->
+  <div *ngIf="popup.visible && popup.type === 'error'"
+    class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+    <div class="bg-[#0f172a] border border-gray-700 rounded-2xl w-full max-w-sm shadow-2xl p-6 text-center">
+      <div class="text-4xl mb-3">❌</div>
+      <h3 class="text-white font-bold text-lg mb-2">{{ popup.title }}</h3>
+      <p class="text-gray-400 text-sm mb-6 whitespace-pre-line">{{ popup.message }}</p>
+      <button (click)="closePopup()"
+        class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-2 rounded-lg transition-colors">
+        OK
+      </button>
+    </div>
+  </div>
+
+  <!-- Confirm Popup -->
+  <div *ngIf="popup.visible && popup.type === 'confirm'"
+    class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+    <div
+      class="bg-[#0f172a] rounded-2xl w-full max-w-sm shadow-2xl p-6 text-center"
+      [ngClass]="{
+        'border border-green-700/60': popup.title.includes('✅'),
+        'border border-blue-700/60':  popup.title.includes('💰'),
+        'border border-yellow-700/60': !popup.title.includes('✅') && !popup.title.includes('💰')
+      }">
+
+      <div class="text-4xl mb-3">
+        {{ popup.title.includes('✅') ? '🎉' : popup.title.includes('💰') ? '💰' : '⚠️' }}
+      </div>
+
+      <h3 class="font-bold text-lg mb-2"
+        [ngClass]="{
+          'text-green-400': popup.title.includes('✅'),
+          'text-blue-400':  popup.title.includes('💰'),
+          'text-yellow-400': !popup.title.includes('✅') && !popup.title.includes('💰')
+        }">
+        {{ popup.title }}
+      </h3>
+
+      <p class="text-gray-400 text-sm mb-6 whitespace-pre-line">{{ popup.message }}</p>
+
+      <div class="flex gap-3 justify-center">
+        <button *ngIf="!popup.title.includes('✅')"
+          (click)="closePopup()"
+          class="border border-gray-600 hover:bg-gray-800 text-gray-300 font-bold px-6 py-2 rounded-lg transition-colors">
+          Cancel
+        </button>
+        <button (click)="confirmPopup()"
+          class="font-bold px-6 py-2 rounded-lg transition-colors text-white"
+          [ngClass]="{
+            'bg-green-600 hover:bg-green-700': popup.title.includes('✅'),
+            'bg-blue-600 hover:bg-blue-700':   popup.title.includes('💰'),
+            'bg-red-600 hover:bg-red-700':     !popup.title.includes('✅') && !popup.title.includes('💰')
+          }">
+          {{ popup.title.includes('✅') ? 'OK' : popup.title.includes('💰') ? 'Yes, Request' : 'Yes, Proceed' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

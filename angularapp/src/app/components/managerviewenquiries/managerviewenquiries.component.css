@@ -1,0 +1,8 @@
+.enquiry-card {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enquiry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -5px rgba(225, 29, 72, 0.1), 0 4px 15px -3px rgba(0, 0, 0, 0.5) !important;
+}

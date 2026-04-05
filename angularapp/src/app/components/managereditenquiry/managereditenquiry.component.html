@@ -1,0 +1,64 @@
+<div class="min-h-screen bg-black flex items-center justify-center px-4 py-12">
+    <div class="max-w-md w-full bg-gray-900 border border-gray-800 rounded-2xl shadow-2xl p-8">
+       
+        <!-- Header -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-white tracking-tight">Update Enquiry</h2>
+            <p class="text-gray-400 text-sm mt-1">ID: #{{ enquiryId }}</p>
+        </div>
+ 
+        <div *ngIf="isLoading" class="flex justify-center py-10">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
+        </div>
+ 
+        <form *ngIf="!isLoading" [formGroup]="editForm" (ngSubmit)="onSubmit()" class="space-y-6">
+           
+            <!-- Read Only User Enquiry Message -->
+            <div>
+                <label for="userMessage" class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">User Message</label>
+                <textarea
+                    id="userMessage"
+                    readonly
+                    class="w-full bg-gray-800/50 border border-gray-700 text-gray-300 rounded-lg p-4 text-sm italic resize-none cursor-default"
+                    rows="3"
+                >{{ enquiryData.message }}</textarea>
+            </div>
+ 
+            <!-- Editable Status Dropdown -->
+            <div>
+                <label for="status" class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Update Status</label>
+                <select
+                    id="status"
+                    formControlName="status"
+                    class="w-full bg-gray-900 border border-gray-700 text-white text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block p-3 outline-none transition-all"
+                >
+                    <option value="Rejected">Rejected</option>
+                    <option value="Resolved">Resolved</option>
+                </select>
+            </div>
+ 
+            <!-- Action Buttons -->
+            <div class="flex gap-4 pt-4">
+                <button
+                    type="button"
+                    routerLink="/manager/view-enquiries"
+                    class="flex-1 bg-transparent border border-gray-700 hover:bg-gray-800 text-gray-300 font-bold py-3 px-4 rounded-lg transition-colors text-sm"
+                >
+                    Cancel
+                </button>
+                <button
+                    type="submit"
+                    [disabled]="editForm.invalid"
+                    class="flex-1 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-3 px-4 rounded-lg transition-all shadow-lg text-sm"
+                >
+                    Save Changes
+                </button>
+            </div>
+        </form>
+ 
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="mt-4 p-3 bg-red-900/20 border border-red-500/50 text-red-500 text-xs rounded-lg text-center">
+            {{ errorMessage }}
+        </div>
+    </div>
+</div>

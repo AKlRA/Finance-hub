@@ -1,0 +1,272 @@
+<div class="min-h-screen bg-black text-white p-6">
+  
+  <!-- Header -->
+  <div class="mb-8 border-b border-gray-800 pb-4">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-xl font-semibold">Manage Plan Applications</h2>
+        <p class="text-gray-400 text-sm">Total: {{ applications.length }}</p>
+      </div>
+      <button
+        (click)="downloadAllPDF()"
+        [disabled]="isDownloadingPDF || applications.length === 0"
+        class="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 disabled:opacity-40 text-white text-xs font-bold uppercase tracking-wider transition-all">
+        <span *ngIf="!isDownloadingPDF">📄 Download PDF</span>
+        <span *ngIf="isDownloadingPDF" class="flex items-center gap-2">
+          <span class="animate-spin rounded-full h-3 w-3 border-b-2 border-white"></span>
+          Generating...
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="errorMessage" class="bg-red-900/50 border border-red-500 text-red-200 p-3 rounded mb-4 text-sm">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="flex flex-col items-center justify-center py-32 gap-6">
+    <div class="flex gap-4 text-4xl">
+      <span class="animate-bounce" style="animation-delay: 0ms">📋</span>
+      <p class="text-gray-500 text-xs tracking-widest uppercase animate-pulse">Loading plan applications...</p>
+    </div>
+  </div>
+
+  <!-- Table Wrapper -->
+  <div class="table-wrapper shadow-lg" *ngIf="!isLoading && applications.length > 0">
+    
+    <!-- Scrollable container -->
+    <div class="table-scroll-container">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th class="col-id">App ID</th>
+            <th class="col-user">Customer</th>
+            <th class="col-plan">Plan Details</th>
+            <th class="col-amount cursor-pointer"
+                (click)="sortByAmount()"
+                (keydown.enter)="sortByAmount()"
+                (keydown.space)="sortByAmount()"
+                tabindex="0"
+                role="button"
+                aria-label="Sort by amount">Amount ⇅</th>
+            <th class="col-proof">Proof</th>
+            <th class="col-status">Status</th>
+            <th class="text-center">Decisions</th>
+            <th class="text-center">Installments</th>
+            <th class="text-center">Withdrawal</th>
+            <th class="text-center">Receipt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let app of paginatedApplications" class="hover:bg-gray-900/40 transition-colors">
+
+            <td class="text-gray-400">#{{ app.planApplicationId }}</td>
+
+            <td>
+              <div class="text-sm font-medium">{{ app.user?.username || 'Guest' }}</div>
+              <div class="text-[10px] text-gray-500 truncate">{{ app.user?.email }}</div>
+            </td>
+
+            <td>
+              <div class="text-sm truncate">{{ app.savingsPlan?.name }}</div>
+              <div class="text-[10px] text-gray-500">ID: {{ app.savingsPlan?.savingsPlanId }}</div>
+            </td>
+
+            <td class="text-sm">₹{{ app.savingsPlan?.goalAmount | number }}</td>
+
+            <td>
+              <button *ngIf="app.proofDocument" (click)="viewProof(app.proofDocument)" class="view-btn">View</button>
+              <span *ngIf="!app.proofDocument" class="text-gray-600 italic text-[10px]">None</span>
+            </td>
+
+            <td>
+              <span class="status-badge" [ngClass]="{
+                'text-green-500 border-green-900': app.status === 'APPROVED',
+                'text-red-500 border-red-900': app.status === 'REJECTED',
+                'text-yellow-500 border-yellow-900': app.status === 'PENDING'
+              }">{{ app.status }}</span>
+            </td>
+
+            <td class="text-center">
+              <div class="flex justify-center gap-4">
+                <button (click)="updateApplicationStatus(app.planApplicationId, 'APPROVED')"
+                  [disabled]="app.status === 'APPROVED'"
+                  class="text-[10px] font-bold uppercase tracking-wider hover:text-green-400 disabled:opacity-20">
+                  Approve
+                </button>
+                <button (click)="updateApplicationStatus(app.planApplicationId, 'REJECTED')"
+                  [disabled]="app.status === 'REJECTED'"
+                  class="text-[10px] font-bold uppercase tracking-wider hover:text-red-400 disabled:opacity-20">
+                  Reject
+                </button>
+              </div>
+            </td>
+
+            <!-- Installments -->
+            <td class="text-center">
+              <div *ngIf="app.status === 'APPROVED' && app.installmentsPaid > 0; else noInstallments">
+                <button
+                  (click)="viewInstallmentHistory(app)"
+                  class="inline-flex items-center gap-1 bg-indigo-600/20 hover:bg-indigo-600/40 border border-indigo-500/40 hover:border-indigo-400 text-indigo-400 hover:text-indigo-300 text-[10px] font-semibold px-2.5 py-1 rounded-lg transition-all duration-200 whitespace-nowrap">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                  </svg>
+                  {{ app.installmentsPaid }}/{{ app.totalInstallments }}
+                </button>
+              </div>
+              <ng-template #noInstallments>
+                <span class="text-gray-600 text-[10px]">—</span>
+              </ng-template>
+            </td>
+
+            <!-- Withdrawal -->
+            <td class="text-center">
+              <ng-container *ngIf="app.paymentStatus === 'COMPLETED'; else noWithdrawal">
+                <div *ngIf="app.withdrawalStatus === 'REQUESTED'" class="flex flex-col items-center gap-1">
+                  <span class="text-yellow-400 text-[10px] font-bold uppercase mb-1">⏳ Requested</span>
+                  <div class="flex gap-1">
+                    <button (click)="updateWithdrawal(app.planApplicationId, 'APPROVED')"
+                      class="text-[10px] font-bold uppercase tracking-wider hover:text-green-400 transition-colors">
+                      Approve
+                    </button>
+                    <span class="text-gray-600">|</span>
+                    <button (click)="updateWithdrawal(app.planApplicationId, 'REJECTED')"
+                      class="text-[10px] font-bold uppercase tracking-wider hover:text-red-400 transition-colors">
+                      Reject
+                    </button>
+                  </div>
+                </div>
+                <span *ngIf="app.withdrawalStatus === 'APPROVED'"
+                  class="text-green-400 text-[11px] font-bold">✅ Approved</span>
+                <span *ngIf="app.withdrawalStatus === 'REJECTED'"
+                  class="text-red-400 text-[11px] font-bold">Rejected</span>
+                <span *ngIf="!app.withdrawalStatus"
+                  class="text-gray-600 text-[11px]">Not Requested</span>
+              </ng-container>
+              <ng-template #noWithdrawal>
+                <span class="text-gray-700 text-[11px]">—</span>
+              </ng-template>
+            </td>
+
+            <!-- Receipt -->
+            <td class="text-center">
+              <button
+                (click)="downloadSinglePDF(app)"
+                class="text-[10px] font-bold uppercase tracking-wider hover:text-red-400 transition-colors">
+                📄 Receipt
+              </button>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex items-center justify-between px-4 py-4 bg-[#0a0a0a] border-t border-gray-800">
+      <span class="text-[10px] text-gray-500 uppercase tracking-widest">
+        Showing {{ (currentPage - 1) * pageSize + 1 }}-{{ Math.min(currentPage * pageSize, applications.length) }} of {{ applications.length }}
+      </span>
+      <div class="flex items-center space-x-2">
+        <button [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)"
+          class="px-3 py-1 text-[10px] font-bold uppercase border border-gray-700 disabled:opacity-20 hover:bg-gray-800 transition-all">
+          Prev
+        </button>
+        <span class="px-3 py-1 text-[10px] font-bold text-red-500 bg-red-500/10 border border-red-500/30">
+          {{ currentPage }} / {{ totalPages }}
+        </span>
+        <button [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)"
+          class="px-3 py-1 text-[10px] font-bold uppercase border border-gray-700 disabled:opacity-20 hover:bg-gray-800 transition-all">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!isLoading && applications.length === 0"
+    class="flex flex-col items-center justify-center py-20 text-gray-600">
+    <p class="text-lg">No applications found.</p>
+  </div>
+
+  <!-- Installment History Modal -->
+  <div *ngIf="showHistoryModal"
+    class="fixed inset-0 bg-black/75 flex items-center justify-center z-50 p-4"
+    (click)="closeHistoryModal()"
+    (keydown.escape)="closeHistoryModal()"
+    (keydown.enter)="closeHistoryModal()"
+    tabindex="0"
+    role="button"
+    aria-label="Close modal">
+    <div
+      class="bg-[#0f172a] border border-gray-700 rounded-xl w-full max-w-lg shadow-2xl"
+      (click)="$event.stopPropagation()"
+      (keydown.enter)="$event.stopPropagation()"
+      (keydown.space)="$event.stopPropagation()"
+      (keydown.escape)="$event.stopPropagation()">
+
+      <div class="flex justify-between items-center px-6 py-4 border-b border-gray-800">
+        <div>
+          <h3 class="text-white font-bold text-base m-0">📜 Installment History</h3>
+          <p class="text-gray-500 text-xs mt-0.5 m-0">
+            {{ selectedApp?.user?.username }} — {{ selectedApp?.savingsPlan?.name }}
+          </p>
+        </div>
+        <button class="text-gray-400 hover:text-white text-2xl leading-none" (click)="closeHistoryModal()">×</button>
+      </div>
+
+      <div class="p-6">
+        <div class="grid grid-cols-4 gap-3 bg-gray-900/50 rounded-lg p-4 mb-4">
+          <div>
+            <p class="text-gray-400 text-xs mb-1">Monthly</p>
+            <p class="text-white font-bold m-0">₹{{ selectedApp?.installmentAmount | number }}</p>
+          </div>
+          <div class="text-center">
+            <p class="text-gray-400 text-xs mb-1">Paid</p>
+            <p class="text-green-400 font-bold m-0">{{ selectedApp?.installmentsPaid }}/{{ selectedApp?.totalInstallments }}</p>
+          </div>
+          <div class="text-center">
+            <p class="text-gray-400 text-xs mb-1">Collected</p>
+            <p class="text-blue-400 font-bold m-0">₹{{ totalPaidAmount | number }}</p>
+          </div>
+          <div class="text-right">
+            <p class="text-gray-400 text-xs mb-1">Remaining</p>
+            <p class="text-red-400 font-bold m-0">{{ (selectedApp?.totalInstallments - selectedApp?.installmentsPaid) }} left</p>
+          </div>
+        </div>
+
+        <!-- History Modal Loading -->
+        <div *ngIf="historyLoading" class="flex flex-col items-center justify-center py-8 gap-3">
+          <div class="text-4xl animate-bounce">📜</div>
+          <div class="flex gap-1">
+            <span class="h-2 w-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+            <span class="h-2 w-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+            <span class="h-2 w-2 bg-indigo-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+          </div>
+        </div>
+
+        <div *ngIf="!historyLoading" class="modal-history-scroll max-h-64 overflow-y-auto space-y-2">
+          <article
+            *ngFor="let p of paymentHistory"
+            class="flex justify-between items-center bg-gray-900/40 border border-gray-800 rounded-lg px-4 py-3">
+            <div>
+              <p class="text-white text-sm font-medium m-0">Installment #{{ p.installmentNumber }}</p>
+              <p class="text-gray-500 text-xs m-0">{{ p.paymentDate | date:'dd MMM yyyy, hh:mm a' }}</p>
+            </div>
+            <div class="text-right">
+              <p class="text-white font-semibold text-sm m-0">₹{{ p.amount | number }}</p>
+              <span class="text-green-400 text-xs font-bold">{{ p.status }}</span>
+            </div>
+          </article>
+          <p *ngIf="paymentHistory.length === 0" class="text-gray-500 text-sm text-center py-6">
+            No payments recorded yet.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

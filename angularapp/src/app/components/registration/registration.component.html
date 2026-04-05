@@ -1,0 +1,203 @@
+<div class="min-h-[calc(100vh-4rem)] relative flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+ 
+    <!-- Animated gradient mesh background — your version -->
+<div class="absolute inset-0 bg-dark">
+<div class="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] animate-pulse"></div>
+<div class="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-blue-600/15 rounded-full blur-[120px] animate-pulse" style="animation-delay: 1s;"></div>
+<div class="absolute top-[30%] left-[30%] w-[350px] h-[350px] bg-primary/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 2s;"></div>
+<div class="absolute inset-0 opacity-[0.03]"
+            style="background-image: linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px); background-size: 40px 40px;">
+</div>
+</div>
+ 
+    <!-- Form card -->
+<div class="relative z-10 max-w-md w-full bg-card/80 backdrop-blur-sm p-8 rounded-xl shadow-2xl border border-gray-800">
+<div class="text-center mb-8">
+<div class="flex items-center justify-center mb-4">
+<svg class="w-8 h-8 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>
+<span class="text-white font-extrabold text-2xl">Finance<span class="text-primary">Hub</span></span>
+</div>
+<h2 class="text-3xl font-bold text-white tracking-tight">Create an Account</h2>
+<p class="mt-2 text-sm text-gray-400">Join Finance Hub</p>
+</div>
+ 
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-5">
+ 
+            <div *ngIf="errorMessage"
+                class="bg-red-900/50 border border-primary text-red-200 px-4 py-3 rounded-md text-sm">
+                {{ errorMessage }}
+</div>
+<div *ngIf="successMessage"
+                class="bg-green-900/50 border border-green-500 text-green-200 px-4 py-3 rounded-md text-sm">
+                {{ successMessage }}
+</div>
+ 
+            <!-- Username -->
+<div>
+<label for="username" class="block text-sm font-medium text-gray-300">Username</label>
+<div class="mt-1">
+<input type="text" id="username" formControlName="username"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-700 bg-dark rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm transition-colors"
+                        placeholder="Enter your full name">
+</div>
+<div class="text-primary text-xs mt-1"
+                    *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.invalid">
+<span *ngIf="registerForm.get('username')?.errors?.required">Username is required.</span>
+<span *ngIf="registerForm.get('username')?.errors?.minlength">Username must be at least 3 characters.</span>
+</div>
+</div>
+ 
+            <!-- Email + Send OTP -->
+<div>
+<label for="email" class="block text-sm font-medium text-gray-300">Email Address</label>
+<div class="mt-1 flex gap-2">
+<input type="email" id="email" formControlName="email"
+                        [readonly]="otpSent"
+                        [class.border-green-600]="otpVerified"
+                        [class.border-gray-700]="!otpVerified"
+                        class="appearance-none block w-full px-3 py-2 border bg-dark rounded-md text-gray-200 placeholder-gray-500 focus:outline-none sm:text-sm transition-colors"
+                        placeholder="Enter your email">
+<button type="button" (click)="sendOtp()"
+                        [disabled]="isSendingOtp || otpVerified || registerForm.get('email')?.invalid"
+                        class="whitespace-nowrap px-3 py-2 text-xs font-bold uppercase border border-primary text-primary rounded-md hover:bg-primary hover:text-black transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+<span *ngIf="!isSendingOtp">{{ otpSent ? 'Sent ✓' : 'Send OTP' }}</span>
+<span *ngIf="isSendingOtp"
+                            class="animate-spin rounded-full h-3 w-3 border-b-2 border-primary inline-block"></span>
+</button>
+</div>
+<div class="text-primary text-xs mt-1"
+                    *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+<span *ngIf="registerForm.get('email')?.errors?.required">Email is required.</span>
+<span *ngIf="registerForm.get('email')?.errors?.email">Please enter a valid email.</span>
+</div>
+<p *ngIf="otpVerified" class="text-green-400 text-xs mt-1 font-semibold">✓ Email verified</p>
+</div>
+ 
+            <!-- OTP Input — only shown after send and before verify -->
+<div *ngIf="otpSent && !otpVerified">
+<label for="otp" class="block text-sm font-medium text-gray-300">Enter OTP</label>
+<p *ngIf="otpMessage && !otpVerified" class="text-blue-400 text-xs mt-1 mb-1">{{ otpMessage }}</p>
+<p *ngIf="otpError" class="text-primary text-xs mt-1 mb-1">{{ otpError }}</p>
+<div class="mt-1 flex gap-2">
+<input type="text"
+                        id="otp"
+                        [(ngModel)]="otpValue"
+                        [ngModelOptions]="{standalone: true}"
+                        maxlength="6"
+                        placeholder="6-digit OTP"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-700 bg-dark rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm tracking-widest transition-colors">
+<button type="button" (click)="verifyOtp()"
+                        [disabled]="isVerifyingOtp || otpValue.length !== 6"
+                        class="whitespace-nowrap px-3 py-2 text-xs font-bold uppercase bg-primary text-white rounded-md hover:bg-primaryHover transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+<span *ngIf="!isVerifyingOtp">Verify</span>
+<span *ngIf="isVerifyingOtp"
+                            class="animate-spin rounded-full h-3 w-3 border-b-2 border-white inline-block"></span>
+</button>
+</div>
+<button type="button" (click)="resendOtp()"
+                    class="text-gray-500 hover:text-gray-300 text-xs mt-2 underline transition-colors">
+                    Resend OTP
+</button>
+</div>
+ 
+            <!-- Mobile Number -->
+<div>
+<label for="mobileNumber" class="block text-sm font-medium text-gray-300">Mobile Number</label>
+<div class="mt-1">
+<input type="text" id="mobileNumber" formControlName="mobileNumber"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-700 bg-dark rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm transition-colors"
+                        placeholder="Enter 10 digit number">
+</div>
+<div class="text-primary text-xs mt-1"
+                    *ngIf="registerForm.get('mobileNumber')?.touched && registerForm.get('mobileNumber')?.invalid">
+<span *ngIf="registerForm.get('mobileNumber')?.errors?.required">Mobile Number is required.</span>
+<span *ngIf="registerForm.get('mobileNumber')?.errors?.pattern">Enter a valid 10-digit number.</span>
+</div>
+</div>
+ 
+            <!-- Password -->
+<div>
+<label for="password" class="block text-sm font-medium text-gray-300">Password</label>
+<div class="mt-1">
+<input type="password" id="password" formControlName="password"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-700 bg-dark rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm transition-colors"
+                        placeholder="Create a password">
+</div>
+<div class="text-primary text-xs mt-1"
+                    *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+<span *ngIf="registerForm.get('password')?.errors?.required">Password is required.</span>
+<span *ngIf="registerForm.get('password')?.errors?.minlength">Password must be at least 6 characters.</span>
+</div>
+</div>
+<!-- Confirm Password -->
+<div>
+    <label for="confirmPassword" class="block text-sm font-medium text-gray-300">Confirm Password</label>
+    <div class="mt-1">
+        <input type="password" id="confirmPassword" formControlName="confirmPassword"
+            class="appearance-none block w-full px-3 py-2 border border-gray-700 bg-dark rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm transition-colors"
+            placeholder="Re-enter your password">
+    </div>
+    <div class="text-primary text-xs mt-1"
+        *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid">
+        <span *ngIf="registerForm.get('confirmPassword')?.errors?.required">Please confirm your password.</span>
+    </div>
+    <div class="text-primary text-xs mt-1"
+        *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.errors?.mismatch">
+        Passwords do not match.
+    </div>
+    <div class="text-green-400 text-xs mt-1"
+        *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.value && !registerForm.errors?.mismatch">
+        ✓ Passwords match
+    </div>
+</div>
+ 
+            <!-- Role -->
+<div>
+<label for="userRole" class="block text-sm font-medium text-gray-300">Register As</label>
+<div class="mt-1">
+<select id="userRole" formControlName="userRole"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-700 bg-dark rounded-md text-gray-200 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm transition-colors">
+<option value="CUSTOMER">Customer</option>
+<option value="REGIONALMANAGER">Regional Manager</option>
+</select>
+</div>
+</div>
+ 
+            <!-- Region -->
+<div *ngIf="registerForm.get('userRole')?.value === 'REGIONALMANAGER'">
+<label for="region" class="block text-sm font-medium text-gray-300">Region</label>
+<div class="mt-1">
+<input type="text" id="region" formControlName="region"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-700 bg-dark rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm transition-colors"
+                        placeholder="e.g. NORTH, SOUTH, EAST, WEST">
+</div>
+<div class="text-primary text-xs mt-1"
+                    *ngIf="registerForm.get('region')?.touched && registerForm.get('region')?.invalid">
+<span *ngIf="registerForm.get('region')?.errors?.required">Region is required for Regional Manager.</span>
+</div>
+</div>
+ 
+            <!-- Submit -->
+<div class="pt-2">
+<button type="submit" [disabled]="isLoading || !otpVerified"
+                    class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                    {{ isLoading ? 'Registering...' : 'Register' }}
+</button>
+<p *ngIf="!otpVerified" class="text-center text-gray-500 text-xs mt-2">
+                    Verify your email with OTP to enable registration
+</p>
+</div>
+ 
+            <div class="text-center text-sm pt-4">
+<p class="text-gray-400">Already have an account?
+<a routerLink="/login"
+                        class="font-medium text-primary hover:text-primaryHover transition-colors">Log in</a>
+</p>
+</div>
+ 
+        </form>
+</div>
+</div>

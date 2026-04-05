@@ -1,0 +1,56 @@
+<div class="px-4 py-6 sm:px-0 flex justify-center">
+    <div class="w-full max-w-2xl">
+        <div class="bg-card rounded-xl border border-gray-800 shadow-xl overflow-hidden">
+            <div class="bg-gray-900/50 border-b border-gray-800 px-6 py-4 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-white mb-0 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    Submit an Enquiry
+                </h3>
+                <button class="text-sm font-medium text-gray-400 hover:text-white transition-colors" (click)="goBack()">
+                    &larr; Back
+                </button>
+            </div>
+ 
+            <div class="p-6">
+                <div *ngIf="errorMessage"
+                    class="bg-red-900/50 border border-primary text-red-200 px-4 py-3 rounded-md mb-6 text-sm">
+                    {{ errorMessage }}
+                </div>
+                <div *ngIf="successMessage"
+                    class="bg-green-900/50 border border-green-500 text-green-200 px-4 py-3 rounded-md mb-6 text-sm">
+                    {{ successMessage }}
+                </div>
+ 
+                <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()" class="space-y-6">
+ 
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Your Message /
+                            Question</label>
+                        <textarea id="message" formControlName="message" rows="5"
+                            class="appearance-none block w-full px-3 py-2 border border-gray-700 bg-dark rounded-md text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm transition-colors"
+                            placeholder="How can we help you today? Please provide details..."></textarea>
+ 
+                        <div class="text-primary text-xs mt-2"
+                            *ngIf="enquiryForm.get('message')?.touched && enquiryForm.get('message')?.invalid">
+                            <span *ngIf="enquiryForm.get('message')?.errors?.required">Message is required.</span>
+                            <span *ngIf="enquiryForm.get('message')?.errors?.minlength">Message must be at least 10
+                                characters long.</span>
+                        </div>
+                    </div>
+ 
+                    <div class="pt-2">
+                        <button type="submit" [disabled]="isLoading"
+                            class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primaryHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
+                            {{ isLoading ? 'Submitting...' : 'Submit Enquiry' }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+ 

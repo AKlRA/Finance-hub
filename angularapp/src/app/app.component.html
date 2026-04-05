@@ -1,0 +1,32 @@
+
+ 
+<div class="h-screen bg-dark flex flex-col overflow-hidden">
+ 
+    <!-- Top navbar for unauthenticated users -->
+    <app-navbar *ngIf="!isAuthenticated()"></app-navbar>
+ 
+    <!-- Main layout row -->
+    <div class="flex flex-1 overflow-hidden">
+ 
+        <!-- Left sidebars for authenticated users -->
+        <app-usernav class="hidden md:flex" *ngIf="isAuthenticated() && isCustomer()"></app-usernav>
+        <app-adminnav class="hidden md:flex" *ngIf="isAuthenticated() && isManager()"></app-adminnav>
+ 
+        <!-- Content area -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+ 
+            <!-- Mobile header only when authenticated -->
+            <header *ngIf="isAuthenticated()"
+                class="h-16 flex items-center justify-between px-6 bg-card border-b border-gray-800 md:hidden">
+                <div class="text-primary font-bold text-xl tracking-wider">Finance<span class="text-white">Hub</span></div>
+            </header>
+ 
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-dark"
+                [ngClass]="isAuthenticated() ? 'p-6' : 'p-0'">
+                <router-outlet></router-outlet>
+            </main>
+            <app-chatbot *ngIf="isAuthenticated() && isCustomer()"></app-chatbot>
+        </div>
+    </div>
+</div>
+ 
