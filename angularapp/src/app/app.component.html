@@ -8,17 +8,33 @@
     <!-- Main layout row -->
     <div class="flex flex-1 overflow-hidden">
  
+        <!-- Mobile Sidebar Overlay -->
+        <div *ngIf="isAuthenticated() && isMobileMenuOpen" 
+             class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden" 
+             (click)="closeMobileMenu()">
+        </div>
+
         <!-- Left sidebars for authenticated users -->
-        <app-usernav class="hidden md:flex" *ngIf="isAuthenticated() && isCustomer()"></app-usernav>
-        <app-adminnav class="hidden md:flex" *ngIf="isAuthenticated() && isManager()"></app-adminnav>
+        <div class="z-50 shrink-0 h-full fixed md:relative transform transition-transform duration-300"
+             [ngClass]="(isAuthenticated() && isMobileMenuOpen) ? 'translate-x-0' : '-translate-x-full md:translate-x-0'"
+             *ngIf="isAuthenticated()">
+            <app-usernav (click)="closeMobileMenu()" *ngIf="isCustomer()"></app-usernav>
+            <app-adminnav (click)="closeMobileMenu()" *ngIf="isManager()"></app-adminnav>
+        </div>
  
         <!-- Content area -->
         <div class="flex-1 flex flex-col overflow-hidden">
  
             <!-- Mobile header only when authenticated -->
             <header *ngIf="isAuthenticated()"
-                class="h-16 flex items-center justify-between px-6 bg-card border-b border-gray-800 md:hidden">
+                class="h-16 flex flex-shrink-0 items-center justify-between px-6 bg-card border-b border-gray-800 md:hidden">
                 <div class="text-primary font-bold text-xl tracking-wider">Finance<span class="text-white">Hub</span></div>
+                <button (click)="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path *ngIf="!isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path *ngIf="isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </header>
  
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-dark"

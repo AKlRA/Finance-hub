@@ -9,7 +9,17 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'financehub';
 
+  isMobileMenuOpen = false;
+
   constructor(public authService: AuthService) { }
+
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen = false;
+  }
 
   isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
